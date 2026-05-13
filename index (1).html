@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Damien Deschamps — APE Renov</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #1d6b4f;
+      --green-mid: #2e936c;
+      --green-accent: #2e936c;
+      --orange: #ff8c44;
+      --white: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-muted: #6b7280;
+      --border: #c2e8d8;
+      --card-bg: #f0faf6;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0f2eb;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 16px 40px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 390px;
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      align-self: flex-start;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--green-dark);
+      padding: 32px 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: 20px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* LOGO */
+    .logo {
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* AVATAR */
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid var(--orange);
+      object-fit: cover;
+      margin-bottom: 14px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .role {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .company-line {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PITCH ── */
+    .pitch {
+      background: var(--card-bg);
+      padding: 22px 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 10px;
+    }
+    .pitch-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.45;
+    }
+    .pitch-text em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    /* ── ACTIONS ── */
+    .actions {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, filter 0.15s;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(255, 140, 68, 0.35);
+    }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--text-dark);
+      border: 1.5px solid var(--border);
+    }
+    .btn-secondary:hover { background: var(--card-bg); }
+
+    /* ── CONTACT ── */
+    .section {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .contact-item:hover { border-color: var(--green-accent); background: var(--card-bg); }
+    .contact-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info { display: flex; flex-direction: column; }
+    .contact-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .contact-value {
+      font-size: 14px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* ── SOLUTIONS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: 7px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      background: var(--white);
+    }
+    .tag-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green-accent);
+      flex-shrink: 0;
+    }
+
+    /* ── DPE TOOL ── */
+    .dpe-tool {
+      display: flex;
+      margin: 0 24px 20px;
+      background: var(--green-dark);
+      border-radius: 14px;
+      padding: 18px 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: filter 0.15s;
+    }
+    .dpe-tool:hover { filter: brightness(1.1); }
+    .dpe-tool-text { display: flex; flex-direction: column; gap: 3px; }
+    .dpe-tool-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .dpe-tool-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .dpe-arrow {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER BTN ── */
+    .footer-btn {
+      display: flex;
+      margin: 0 24px 24px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--green-mid);
+      color: var(--white);
+      cursor: pointer;
+      border: none;
+      transition: filter 0.15s;
+      width: calc(100% - 48px);
+    }
+    .footer-btn:hover { filter: brightness(1.1); }
+    .footer-btn:active { transform: scale(0.97); }
+
+    .card-footer {
+      text-align: center;
+      padding: 0 24px 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .card-footer a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- ══════════════════════════
+         HEADER
+         ══════════════════════════ -->
+    <div class="header">
+
+      <!-- LOGO
+           👉 Dépose ton fichier logo dans le même dossier que index.html
+              et renomme-le "logo.png"  -->
+      <div class="logo">
+        <img src="logo.png" alt="APE Renov" />
+      </div>
+
+      <!-- PHOTO
+           👉 Dépose la photo de Damien dans le même dossier
+              et renomme-la "photo.jpg"  -->
+      <img class="avatar" src="photo.jpg" alt="Damien Deschamps" />
+
+      <h1 class="name">Damien<br>Deschamps</h1>
+      <p class="role">Co-fondateur</p>
+      <p class="company-line">APE Renov · Nantes</p>
+    </div>
+
+    <!-- ══════════════════════════
+         PITCH
+         ══════════════════════════ -->
+    <div class="pitch">
+      <p class="section-label">Rénovation énergétique</p>
+      <p class="pitch-text">Votre DPE monte de <em>2 lettres</em> en 48h —&nbsp;sans travaux destructifs.</p>
+    </div>
+
+    <!-- ══════════════════════════
+         CTA
+         ══════════════════════════ -->
+    <div class="actions">
+      <a href="tel:+33618976935" class="btn btn-primary">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
+        </svg>
+        Appeler maintenant
+      </a>
+      <a href="mailto:damien@ape-renov.com" class="btn btn-secondary">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,6 12,13 2,6" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Envoyer un email
+      </a>
+    </div>
+
+    <!-- ══════════════════════════
+         CONTACT
+         ══════════════════════════ -->
+    <div class="section">
+      <p class="section-label">Contact</p>
+      <div class="contact-list">
+
+        <a href="tel:+33618976935" class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#2e936c"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Téléphone</span>
+            <span class="contact-value">06 18 97 69 35</span>
+          </div>
+        </a>
+
+        <a href="mailto:damien@ape-renov.com" class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#2e936c" stroke-width="2"/><polyline points="22,6 12,13 2,6" stroke="#2e936c" stroke-width="2"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">damien@ape-renov.com</span>
+          </div>
+        </a>
+
+        <a href="https://ape-renov.com" target="_blank" class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#2e936c" stroke-width="2"/><line x1="2" y1="12" x2="22" y2="12" stroke="#2e936c" stroke-width="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#2e936c" stroke-width="2"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Site web</span>
+            <span class="contact-value">ape-renov.com</span>
+          </div>
+        </a>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#2e936c" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#2e936c" stroke-width="2"/></svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Adresse</span>
+            <span class="contact-value">28 bis rue Arago, 44100 Nantes</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════
+         NOS SOLUTIONS
+         ══════════════════════════ -->
+    <div class="section">
+      <p class="section-label">Nos solutions</p>
+      <div class="tags">
+        <span class="tag"><span class="tag-dot"></span>Isolation par injection</span>
+        <span class="tag"><span class="tag-dot"></span>VMC Hygro B / VMI</span>
+        <span class="tag"><span class="tag-dot"></span>Pompes à chaleur</span>
+        <span class="tag"><span class="tag-dot"></span>Ballons thermodynamiques</span>
+        <span class="tag"><span class="tag-dot"></span>Menuiserie</span>
+        <span class="tag"><span class="tag-dot"></span>Chauffage inertie</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════
+         OUTIL DPE
+         ══════════════════════════ -->
+    <a href="https://ape-renov.com/" target="_blank" class="dpe-tool">
+      <div class="dpe-tool-text">
+        <span class="dpe-tool-label">Outil gratuit</span>
+        <span class="dpe-tool-title">Vérifiez votre DPE selon les nouvelles règles 2026</span>
+      </div>
+      <div class="dpe-arrow">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- ══════════════════════════
+         AJOUTER AUX CONTACTS
+         ══════════════════════════ -->
+    <button class="footer-btn" id="vcfBtn">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="7" r="4" stroke="white" stroke-width="2"/>
+      </svg>
+      Ajouter à mes contacts
+    </button>
+
+    <div class="card-footer">
+      Carte de visite digitale · <a href="https://ape-renov.com">APE Renov</a>
+    </div>
+
+  </div>
+
+  <script>
+    // Génère un fichier .vcf (contact iPhone/Android)
+    document.getElementById('vcfBtn').addEventListener('click', function () {
+      const vcf = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Damien Deschamps',
+        'ORG:APE Renov',
+        'TITLE:Co-fondateur',
+        'TEL;TYPE=CELL:+33618976935',
+        'EMAIL:damien@ape-renov.com',
+        'URL:https://ape-renov.com',
+        'ADR;TYPE=WORK:;;28 bis rue Arago;Nantes;;44100;France',
+        'END:VCARD'
+      ].join('\n');
+
+      const blob = new Blob([vcf], { type: 'text/vcard' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'damien-deschamps-ape-renov.vcf';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+
+</body>
+</html>
